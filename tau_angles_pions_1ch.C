@@ -34,7 +34,9 @@ void tau_angles_pions_1ch(){
   gSystem->Load("/home/juan/MG5_aMC_v2.6.7/MG5_aMC_v2_6_7/ExRootAnalysis/libExRootAnalysis.so");
   gSystem->Load("libDelphes");
   
-  TString inputFile = "/home/juan/bsm_minv0p_pt1_delphes_events.root";
+  //TString inputFile = "/home/juan/bsm_minv0p_pt1_delphes_events_NNL.root";
+  
+  TString inputFile = "/home/juan/sm_UFO_minv0p_pt1_NNLO_delphes_events.root";
 
   TChain *chain = new TChain("Delphes");
   chain->Add(inputFile);
@@ -49,7 +51,7 @@ void tau_angles_pions_1ch(){
 
   int iTau_p, iTau_n;
 
-  TFile *outf = new TFile("tau_angles_pions_1ch.root","RECREATE");
+  TFile *outf = new TFile("tau_angles_pions_1ch_bsm.root","RECREATE");
 
   TH1F *hist_nut_angles_1ch = new TH1F("hist_nut_angles_1ch","Tau neutrino angles",150,0.0,180.0);
   TH1F *hist_nut_angles_1ch10 = new TH1F("hist_nut_angles_1ch10","Tau neutrino angles",150,0.0,180.0);

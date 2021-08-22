@@ -66,7 +66,7 @@ void check_RecGen(Int_t pid)
      //cout << gen_p->PID << endl;
        //}
      // fprintf(f2,"%f, %f, %f, %f\n",gen_p->T,gen_p->X,gen_p->Y,gen_p->Z);
-     if(gen_p->PID==pid){
+     if(gen_p->PID==pid&&gen_p->PT>10&&gen_p->Eta>-2.5&&gen_p->Eta<2.5&&gen_p->Status==1){
        rec_count+=1;
      }
     }

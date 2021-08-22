@@ -54,7 +54,7 @@ for(Int_t entry = 0; entry < numberOfEntries; ++entry){
 	    if(it==0){
 	      tpart_count+=1;
               //fprintf(f,"%i  %i\n",gen->M1,entry);
-	    }else {
+	    }else{
 	      t_sm_part+=1;
 	    }
 	    break;

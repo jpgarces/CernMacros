@@ -31,7 +31,7 @@ class ExRootLHEFReader;
 #include "TROOT.h"
 
 
-void fstate_muons(){
+void fstate_electrons(){
   gSystem->Load("/home/juan/MG5_aMC_v2.6.7/MG5_aMC_v2_6_7/ExRootAnalysis/libExRootAnalysis.so");
   gSystem->Load("libDelphes");
 
@@ -52,17 +52,17 @@ void fstate_muons(){
 
   GenParticle *particle, *daughter, *tau_n, *tau_p;
 
-  TFile *outf = new TFile("muons_PT_sm.root","RECREATE");
+  TFile *outf = new TFile("electrons_PT_sm.root","RECREATE");
 
-  TH1F *hist_mu_PT = new TH1F("hist_mu_PT", "hist_mu_PT", 100, 0.0, 100.0);
+  TH1F *hist_e_PT = new TH1F("hist_e_PT", "hist_e_PT", 200, 0.0, 100.0);
 
-  /*TH1F *hist_mu_tau_PT = new TH1F("hist_mu_tau_PT", "hist_mu_tau_PT", 100, 0.0, 100.0);
+  /*TH1F *hist_e_tau_PT = new TH1F("hist_e_tau_PT", "hist_e_tau_PT", 100, 0.0, 100.0);
 
-  TH1F *hist_mu_else_PT = new TH1F("hist_mu_else_PT", "hist_mu_else_PT", 100, 0.0, 100.0);
+  TH1F *hist_e_else_PT = new TH1F("hist_e_else_PT", "hist_e_else_PT", 100, 0.0, 100.0);
 
-  TH1F *hist_mup_tau_PT = new TH1F("hist_mup_tau_PT", "hist_mup_tau_PT", 100, 0.0, 100.0);
+  TH1F *hist_ep_tau_PT = new TH1F("hist_ep_tau_PT", "hist_ep_tau_PT", 100, 0.0, 100.0);
 
-  TH1F *hist_mup_else_PT = new TH1F("hist_mup_else_PT", "hist_mup_else_PT", 100, 0.0, 100.0);*/
+  TH1F *hist_ep_else_PT = new TH1F("hist_ep_else_PT", "hist_ep_else_PT", 100, 0.0, 100.0);*/
   
   
   int iTau_n, iTau_p;
@@ -82,31 +82,31 @@ void fstate_muons(){
           iTau_p=j;
           //cout << "Positive tau: " << iTau_p << endl;                                                                                                                                                  
 	  }*/
-      if (particle->PID==13&&particle->Status>0){
+      if (particle->PID==11&particle->Status>0){
         //if (particle->M1 == iTau_n || particle->M2 == iTau_n){
-	// hist_mu_tau_PT->Fill(particle->PT);
-	hist_mu_PT->Fill(particle->PT);
+	//hist_e_tau_PT->Fill(particle->PT);
+	hist_e_PT->Fill(particle->PT);
           //cout << "Tau->electron pT: " << particle->PT << endl;
         //}else{
-	//hist_mu_else_PT->Fill(particle->PT);
+	//hist_e_else_PT->Fill(particle->PT);
 	//}
-      }
-      /*if (particle->PID==-13&&particle->Status>0){
-        if (particle->M1 == iTau_p || particle->M2 == iTau_p){
-           hist_mup_tau_PT->Fill(particle->PT);
+       }
+      //if (particle->PID==-11&&particle->Status>0){
+	// if (particle->M1 == iTau_p || particle->M2 == iTau_p){
+	//hist_ep_tau_PT->Fill(particle->PT);
           //cout << "Tau->electron pT: " << particle->PT << endl;
-        }else{
-	  hist_mup_else_PT->Fill(particle->PT);
-	}
-	}*/
+	   //}else{
+	   //hist_ep_else_PT->Fill(particle->PT);
+	   //}
+      //}
    }
   }
   cout << "** Exiting..." << endl;
-  /*hist_mu_PT->Scale(1/(hist_mu_PT->GetEntries()));
-  hist_mu_tau_PT->Scale(1/(hist_mu_tau_PT->GetEntries()));
-  hist_mu_else_PT->Scale(1/(hist_mu_else_PT->GetEntries()));
-  hist_mup_tau_PT->Scale(1/(hist_mup_tau_PT->GetEntries()));
-  hist_mup_else_PT->Scale(1/(hist_mup_else_PT->GetEntries()));*/
+  /*hist_e_PT->Scale(1/(hist_e_PT->GetEntries()));
+  hist_e_tau_PT->Scale(1/(hist_e_tau_PT->GetEntries()));
+  hist_e_else_PT->Scale(1/(hist_e_else_PT->GetEntries()));
+  hist_ep_tau_PT->Scale(1/(hist_ep_tau_PT->GetEntries()));
+  hist_ep_else_PT->Scale(1/(hist_ep_else_PT->GetEntries()));*/
   outf->Write();
   outf->Close();
   delete treeReader;
